@@ -1,0 +1,24 @@
+/* Styles go here */
+.task-form, .task-list, .task-edit{
+  border:1px solid grey;
+  margin:20px 10px 10px 10px;
+  border-radius:12px;
+  padding:25px;
+}
+
+.task-form button, .task-edit button {
+  margin-top:10px;
+}
+
+.alingTextCenter{
+  text-align:center;
+}
+
+.task-list a{
+  cursor:pointer;
+  margin:0px 7px 0px 7px;
+}
+
+.task-finished{
+  text-decoration: line-through;
+}

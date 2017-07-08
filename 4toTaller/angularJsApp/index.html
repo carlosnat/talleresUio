@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+  <head>
+    <link data-require="bootstrap@*" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <link data-require="font-awesome@*" data-semver="4.7.0" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script data-require="bootstrap@*" data-semver="4.0.5" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="container" ng-controller="MyController">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="task-form">
+            <h4>Formulario</h4>
+            <label for="newTask">Nueva tarea:</label>
+            <input type="text" id="newTask" class="form-control" ng-model="newTaskItem"/>
+            <button class="btn btn-primary" ng-click="newTask()">Agregar</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="task-list" ng-hide="editingTask">
+            <h4>Lista de tareas</h4>
+            <table class="table alingTextCenter">
+              <thead>
+                <tr>
+                  <th class="alingTextCenter">Item</th>
+                  <th class="alingTextCenter">tarea</th>
+                  <th class="alingTextCenter">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in taskList">
+                  <td>{{ $index + 1 }}</td>
+                  <td ng-class="item.finish? 'task-finished' : '' ">{{ item.title }}</td>
+                  <td>
+                    <a class="fa fa-check" ng-click="finishTask(item)"></a>
+                    <a class="fa fa-pencil" ng-click="editTask(item)"></a>
+                    <a class="fa fa-trash" ng-click="removeTask(item)"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="task-edit" ng-show="editingTask">
+            <h4>Editar Tarea</h4>
+            <input class="form-control" type="text" ng-model="taskToEdit.title"/>
+            <button class="btn btn-primary" ng-click="okEditing()">Ok</button>
+            <button class="btn btn-danger" ng-click="cancelEditing()">Cancelar</button>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-primary" ng-click="obtenerTodasLasTareas()">Obtener todo</button>
+          <button class="btn btn-primary" ng-click="salvarTodasLasTareas()">Salvar todo</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
